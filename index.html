@@ -90,7 +90,7 @@
       }
       .name-text,
       .house-text,
-      .country-text {
+      .country-text-holder {
         font-family: "Barlow Condensed", sans-serif;
       }
       .house-text {
@@ -98,12 +98,17 @@
       }
       .country-text {
         font-weight: 200;
+        font-size: 17px;
       }
       .tile-text-holder {
         padding: 14px;
       }
       .tile-text-holder p {
         line-height: 40%;
+        color: #000000;
+      }
+      .country-text-holder {
+        line-height: 25%;
         color: #000000;
       }
     </style>
@@ -160,7 +165,12 @@
         <div class="tile-text-holder">
           <p class="name-text">Shameer MP</p>
           <p class="house-text">Hiraa House</p>
-          <p class="country-text">Sweden</p>
+          <div class="country-text-holder">
+            <span class="country-text">Sweden</span>
+            <span
+              ><img src="https://www.countryflags.io/in/flat/16.png" alt=""
+            /></span>
+          </div>
         </div>
       </div>
       <div class="tile">
