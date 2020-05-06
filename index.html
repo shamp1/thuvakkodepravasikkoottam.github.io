@@ -8,6 +8,7 @@
     ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
+
       function gtag() {
         dataLayer.push(arguments);
       }
@@ -36,32 +37,44 @@
         line-height: 1.8;
         color: #f5f6f7;
       }
+
       p {
         font-size: 16px;
       }
+
       .margin {
         margin-bottom: 45px;
       }
+
       .bg-1 {
-        background-color: #1abc9c; /* Green */
+        background-color: #1abc9c;
+        /* Green */
         color: #ffffff;
       }
+
       .bg-2 {
-        background-color: #474e5d; /* Dark Blue */
+        background-color: #474e5d;
+        /* Dark Blue */
         color: #ffffff;
       }
+
       .bg-3 {
-        background-color: #ffffff; /* White */
+        background-color: #ffffff;
+        /* White */
         color: #555555;
       }
+
       .bg-4 {
-        background-color: #2f2f2f; /* Black Gray */
+        background-color: #2f2f2f;
+        /* Black Gray */
         color: #fff;
       }
+
       .container-fluid {
         padding-top: 70px;
         padding-bottom: 70px;
       }
+
       .navbar {
         padding-top: 15px;
         padding-bottom: 15px;
@@ -71,53 +84,74 @@
         font-size: 12px;
         letter-spacing: 5px;
       }
+
       .navbar-nav li a:hover {
         color: #1abc9c !important;
       }
+
       .tile {
-        width: 250px;
-        height: 375px;
+        width: 300px;
+        height: 425px;
         background-color: #cccccc;
         border-radius: 5px;
         overflow: hidden;
         display: inline-block;
+        margin-bottom: 20px;
       }
+
       .photo-holder {
         width: 100%;
-        height: 300px;
+        height: 350px;
         background-color: rgb(161, 172, 20);
         overflow: hidden;
       }
+
       .photo-holder img {
-        object-fit: cover;
         width: 100%;
         height: 100%;
+        object-fit: cover;
       }
+
       .name-text,
       .house-text,
       .country-text-holder {
         font-family: "Barlow Condensed", sans-serif;
       }
+
       .house-text {
         font-weight: 300;
       }
+
       .country-text {
         font-weight: 200;
         font-size: 17px;
       }
+
       .tile-text-holder {
         padding: 14px;
       }
+
       .tile-text-holder p {
         line-height: 40%;
         color: #000000;
       }
+
       .country-text-holder {
         line-height: 25%;
         color: #000000;
       }
+
+      .tile-holder {
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
     </style>
   </head>
+
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-default">
@@ -133,7 +167,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Thuvakkode Pravasikkoottam</a>
+          <span>Thuvakkode</span>
+          <span>Pravasikkoottam</span>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
@@ -146,67 +181,130 @@
     </nav>
 
     <!-- First Container -->
-    <div class="container-fluid">
-      <div class="tile">
-        <div class="photo-holder">
-          <img
-            src="https://drive.google.com/uc?id=1nqXtu5J6Xt1SMhZFRJTXHlfOkGMycRjO"
-          />
-        </div>
-        <div class="tile-text-holder">
-          <p class="name-text">Shameer MP</p>
-          <p class="house-text">Hiraa House</p>
-          <p class="country-text">Sweden</p>
-        </div>
-      </div>
-      <div class="tile">
-        <div class="photo-holder">
-          <img
-            src="https://drive.google.com/uc?id=1gKFca8UHBA3qeNTgmPPx5w-lZ-AQT3yE"
-          />
-        </div>
-        <div class="tile-text-holder">
-          <p class="name-text">Shameer MP</p>
-          <p class="house-text">Hiraa House</p>
-          <div class="country-text-holder">
-            <span class="country-text">Sweden</span>
-            <span
-              ><img src="https://www.countryflags.io/se/flat/16.png" alt=""
-            /></span>
-          </div>
-        </div>
-      </div>
-      <div class="tile">
-        <div class="photo-holder">
-          <img
-            src="https://drive.google.com/uc?id=1H20kXg8m1FXupwmzPAPzsRaBi88FgvHT"
-          />
-        </div>
-        <div class="tile-text-holder">
-          <p class="name-text">Shameer MP</p>
-          <p class="house-text">Hiraa House</p>
-          <div class="country-text-holder">
-            <span class="country-text">United State of America</span>
-            <span
-              ><img src="https://www.countryflags.io/us/flat/16.png" alt=""
-            /></span>
-          </div>
-        </div>
-      </div>
-      <div class="tile">
-        <div class="photo-holder">
-          <img
-            src="https://drive.google.com/uc?id=1BrfkRr2QV-oN07hp38Y_HrLDEKNhlDb1"
-          />
-        </div>
-        <div class="tile-text-holder">
-          <p class="name-text">Shameer MP</p>
-          <p class="house-text">Hiraa House</p>
-          <p class="country-text">Sweden</p>
-        </div>
-      </div>
-    </div>
-
+    <div class="tile-holder"></div>
     <!-- Footer -->
+
+    <script>
+      var jsonData = "";
+      var stringData = "";
+      var countryCodes = {
+        Bahrain: "bh",
+        Oman: "om",
+        Qatar: "qa",
+        "United Arab Emirates": "ae",
+        Sweden: "se",
+        "United Kingdom": "gb",
+        "Saudi Arabia": "sa",
+        Kuwait: "kw",
+        India: "in",
+      };
+
+      function populateStringData() {
+        stringData = jsonData.map(function (d) {
+          return ` <div class="tile">
+      <div class="photo-holder">
+        <img src="https://drive.google.com/uc?${getIdFromGDriveURL(d.photo)}" />
+      </div>
+      <div class="tile-text-holder">
+        <p class="name-text">${d.full_name}
+        </p>
+        <p class="house-text">${d.house_name}</p>
+        <div class="country-text-holder">
+          <span class="country-text">${d.country}</span>
+          <span><img src="https://www.countryflags.io/${
+            countryCodes[d.country]
+          }/flat/16.png" alt="" /></span>
+        </div>
+      </div>
+    </div>`;
+        });
+
+        console.log("String data has been populated");
+        console.log(stringData);
+      }
+
+      function renderElements() {
+        $(".tile-holder").html(stringData.join(""));
+      }
+
+      function titleCase(str) {
+        str = str.toLowerCase();
+        str = str.split(" ");
+
+        for (var i = 0; i < str.length; i++) {
+          str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+        }
+
+        return str.join(" ");
+      }
+
+      function getProperCountryName(c) {
+        c = c.toLowerCase();
+        if (c == "dubai" || c == "uae" || c == "abudhabi uae") {
+          return "United Arab Emirates";
+        } else if (c == "ksa") {
+          return "Saudi Arabia";
+        } else {
+          return titleCase(c);
+        }
+      }
+
+      function formatKeys() {
+        var dataString = JSON.stringify(jsonData);
+        console.log(typeof dataString);
+
+        dataString = dataString.replace(/Full Name/g, "full_name");
+        dataString = dataString.replace(/House Name/g, "house_name");
+        dataString = dataString.replace(/Current Contact Number/g, "mob");
+        dataString = dataString.replace(/Date of Birth/g, "dob");
+        dataString = dataString.replace(/Upload a close up photo/g, "photo");
+        dataString = dataString.replace(/Blood group/g, "blood");
+        dataString = dataString.replace(
+          /Currently working country/g,
+          "country"
+        );
+
+        jsonData = JSON.parse(dataString);
+      }
+
+      function formatData() {
+        for (var i = 0; i < jsonData.length; i++) {
+          jsonData[i].country = getProperCountryName(jsonData[i].country);
+          jsonData[i].full_name = titleCase(jsonData[i].full_name);
+          jsonData[i].house_name = titleCase(jsonData[i].house_name);
+        }
+      }
+
+      function dataLoaded() {
+        formatKeys();
+        formatData();
+        populateStringData();
+        renderElements();
+      }
+
+      function loadJSON() {
+        $.getJSON(
+          "test.json",
+          function (data) {
+            jsonData = data;
+            dataLoaded();
+          }
+        );
+      }
+
+      function getIdFromGDriveURL(p) {
+        return p.substring(p.indexOf("id="));
+      }
+
+      function testDataLoad() {
+
+        dataLoaded();
+      }
+
+      $(document).ready(function () {
+        loadJSON();
+       // testDataLoad();
+      });
+    </script>
   </body>
 </html>
