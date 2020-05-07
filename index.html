@@ -267,12 +267,16 @@
       }
 
       function loadJSON() {
-         $.ajax({
-        url: "test.json",
+        $.ajax({
+        url: "https://raw.githubusercontent.com/thuvakkodepravasikkoottam/thuvakkodepravasikkoottam.github.io/master/test.json?a=231",
         dataType: "text",
         success: function (data) {
           jsonData = data;
           dataLoaded();
+        },
+        error: function (jqXHR, exception) {
+          console.log(jqXHR);
+          console.log(exception);
         }
       });
       }
