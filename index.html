@@ -267,13 +267,14 @@
       }
 
       function loadJSON() {
-        $.getJSON(
-          "test.json",
-          function (data) {
-            jsonData = data;
-            dataLoaded();
-          }
-        );
+         $.ajax({
+        url: "https://raw.githubusercontent.com/thuvakkodepravasikkoottam/thuvakkodepravasikkoottam.github.io/master/test.json?a=231",
+        dataType: "text",
+        success: function (data) {
+          jsonData = data;
+          dataLoaded();
+        }
+      });
       }
 
       function getIdFromGDriveURL(p) {
