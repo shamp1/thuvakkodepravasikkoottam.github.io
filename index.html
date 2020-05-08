@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   
     <title>Thuvakkode Pravasikkoottam</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,6 +10,10 @@
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
       rel="stylesheet"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -132,14 +135,25 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
-	      padding-top:30px;
+        padding-top: 30px;
+      }
+
+      .header-holder {
+        background-color: #cccccc;
+      }
+      .heading {
+        font-family: "Chewy", cursive;
+        color: #000;
+        font-size: 23px;
+        line-height: 25px;
+        margin-left: 20px;
       }
     </style>
   </head>
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default header-holder">
       <div class="container">
         <div class="navbar-header">
           <button
@@ -152,14 +166,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <span>Thuvakkode</span>
-          <span>Pravasikkoottam</span>
+          <div class="heading">Thuvakkode<br />Pravasikkoottam</div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">WHO</a></li>
-            <li><a href="#">WHAT</a></li>
-            <li><a href="#">WHERE</a></li>
+            <li><a href="#">WE</a></li>
+            <li><a href="#">OUR BLOOD</a></li>
           </ul>
         </div>
       </div>
@@ -257,7 +269,7 @@
           jsonData[i].country = getProperCountryName(jsonData[i].country);
           jsonData[i].full_name = titleCase(jsonData[i].full_name);
           jsonData[i].house_name = titleCase(jsonData[i].house_name);
-	  jsonData[i].country = String(jsonData[i].country).trim();
+          jsonData[i].country = String(jsonData[i].country).trim();
         }
       }
 
@@ -270,19 +282,20 @@
 
       function loadJSON() {
         $.ajax({
-        url: "test.json",
-        dataType: "text",
-        success: function (data) {
-          jsonData = JSON.parse(data).data;
-		  console.log(jsonData);
-		  console.log(typeof(jsonData));
-          dataLoaded();
-        },
-        error: function (jqXHR, exception) {
-          console.log(jqXHR);
-          console.log(exception);
-        }
-      });
+          url:
+            "https://raw.githubusercontent.com/thuvakkodepravasikkoottam/thuvakkodepravasikkoottam.github.io/master/test.json",
+          dataType: "text",
+          success: function (data) {
+            jsonData = JSON.parse(data).data;
+            console.log(jsonData);
+            console.log(typeof jsonData);
+            dataLoaded();
+          },
+          error: function (jqXHR, exception) {
+            console.log(jqXHR);
+            console.log(exception);
+          },
+        });
       }
 
       function getIdFromGDriveURL(p) {
@@ -290,13 +303,12 @@
       }
 
       function testDataLoad() {
-
         dataLoaded();
       }
 
       $(document).ready(function () {
         loadJSON();
-       // testDataLoad();
+        // testDataLoad();
       });
     </script>
   </body>
