@@ -268,10 +268,12 @@
 
       function loadJSON() {
         $.ajax({
-        url: "https://raw.githubusercontent.com/thuvakkodepravasikkoottam/thuvakkodepravasikkoottam.github.io/master/test.json",
-        dataType: "json",
+        url: "test.json",
+        dataType: "text",
         success: function (data) {
-          jsonData = data;
+          jsonData = JSON.parse(data).data;
+		  console.log(jsonData);
+		  console.log(typeof(jsonData));
           dataLoaded();
         },
         error: function (jqXHR, exception) {
