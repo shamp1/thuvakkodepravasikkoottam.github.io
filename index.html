@@ -256,6 +256,7 @@
           jsonData[i].country = getProperCountryName(jsonData[i].country);
           jsonData[i].full_name = titleCase(jsonData[i].full_name);
           jsonData[i].house_name = titleCase(jsonData[i].house_name);
+	  jsonData[i].country = String(jsonData[i].country).trim();
         }
       }
 
