@@ -268,7 +268,6 @@
         var bloofiltered = "";
 
         for (var i = 0; i < bloodMaster.length; i++) {
-          console.log(bloodMaster[i]);
           $(".blood-holder").append(
             `<div class="blood-tile blood-group-header"> ${bloodMaster[i]}</div>`
           );
@@ -341,7 +340,7 @@
           jsonData[i].mob = "#####";
           jsonData[i].dob = "#####";
         }
-        console.log(JSON.stringify(jsonData));
+        //console.log(JSON.stringify(jsonData));
       }
 
       function dataLoaded() {
@@ -376,18 +375,21 @@
       }
 
       function testDataLoad() {
-        jsonData = [
-          ("data": {
-            Timestamp: "2020/05/02 11:52:01 AM GMT+2",
-            "Full Name": "Sarath Mohan",
-            "House Name": "Archana",
-            "Currently working country": "Oman",
-            "Current Contact Number": "+96891271371",
-            "Date of Birth": "1989-01-27",
-            "Blood group": "B +ve",
-            "Upload a close up photo": "https://drive.google.com/u/0/open?usp=forms_web&id=1QkjImD40Sl9sATzTh2yA4gn4U5vAqKAP",
-          }),
-        ];
+        jsonData = {
+          data: [
+            {
+              Timestamp: "2020/05/02 11:52:01 AM GMT+2",
+              "Full Name": "Sarath Mohan",
+              "House Name": "Archana",
+              "Currently working country": "Oman",
+              "Current Contact Number": "+96891271371",
+              "Date of Birth": "1989-01-27",
+              "Blood group": "B +ve",
+              "Upload a close up photo":
+                "https://drive.google.com/u/0/open?usp=forms_web&id=1QkjImD40Sl9sATzTh2yA4gn4U5vAqKAP",
+            },
+          ],
+        };
 
         dataLoaded();
       }
