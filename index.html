@@ -154,7 +154,8 @@
         line-height: 25px;
         margin-left: 20px;
       }
-      .here-we-are-title {
+      .here-we-are-title,
+      .here-is-our-blood {
         color: #000000;
         text-align: center;
         font-family: "Caveat", cursive;
@@ -163,6 +164,26 @@
       }
       .menu-items {
         font-family: "Caveat", cursive;
+      }
+      .blood-holder {
+        color: #000000;
+
+        width: 95%;
+        margin: 0 auto;
+        padding-top: 20px;
+      }
+      .blood-group-header {
+        background-color: #ffb466;
+      }
+      .blood-group-name-tile {
+        background-color: #cccccc;
+      }
+      .blood-tile {
+        margin-bottom: 3px;
+        border-radius: 5px;
+        font-family: "Barlow Condensed", sans-serif;
+        padding-left: 10px;
+        font-size: 16px;
       }
     </style>
   </head>
@@ -186,8 +207,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right menu-items">
-            <li><a href="#">WE</a></li>
-            <li><a href="#">OUR BLOOD</a></li>
+            <li><a href="#" onclick="showPhotoPage()">WE</a></li>
+            <li><a href="#" onclick="showBloodPage()">OUR BLOOD</a></li>
           </ul>
         </div>
       </div>
@@ -195,7 +216,11 @@
 
     <!-- First Container -->
     <div class="here-we-are-title">here we are...</div>
+    <div class="here-is-our-blood">here is our blood...</div>
+
     <div class="tile-holder"></div>
+    <div class="blood-holder"></div>
+    <!-- Footer -->
     <!-- Footer -->
 
     <script>
@@ -213,28 +238,53 @@
         India: "in",
       };
 
+      var bloodMaster = [
+        "A +ve",
+        "A -ve",
+        "B +ve",
+        "B -ve",
+        "O +ve",
+        "O -ve",
+        "AB +ve",
+        "AB -ve",
+      ];
+
+      function showPhotoPage() {
+        $(".here-we-are-title").show();
+        $(".here-is-our-blood").hide();
+        $(".tile-holder").show();
+        $(".blood-holder").hide();
+      }
+      function showBloodPage() {
+        $(".here-we-are-title").hide();
+        $(".here-is-our-blood").show();
+        $(".tile-holder").hide();
+        $(".blood-holder").show();
+      }
+      function renderBloodPage() {
+        var bloofiltered = "";
+
+        for (var i = 0; i < bloodMaster.length; i++) {
+          console.log(bloodMaster[i]);
+          $(".blood-holder").append(
+            `<div class="blood-tile blood-group-header"> ${bloodMaster[i]}</div>`
+          );
+
+          for (var j = 0; j < jsonData.length; j++) {
+            if (jsonData[j].blood == bloodMaster[i]) {
+              $(".blood-holder").append(
+                `<div class="blood-tile blood-group-name-tile"> ${jsonData[j].full_name}</div>`
+              );
+            }
+          }
+        }
+      }
       function populateStringData() {
         stringData = jsonData.map(function (d) {
-          return ` <div class="tile">
-      <div class="photo-holder">
-        <img src="https://drive.google.com/uc?${getIdFromGDriveURL(d.photo)}" />
-      </div>
-      <div class="tile-text-holder">
-        <p class="name-text">${d.full_name}
-        </p>
-        <p class="house-text">${d.house_name}</p>
-        <div class="country-text-holder">
-          <span class="country-text">${d.country}</span>
-          <span><img src="https://www.countryflags.io/${
-            countryCodes[d.country]
-          }/flat/16.png" alt="" /></span>
-        </div>
-      </div>
-    </div>`;
+          return `<div class="tile"> <div class="photo-holder"> <img src="https://drive.google.com/uc?${getIdFromGDriveURL(
+            d.photo
+          )}" /> </div> <div class="tile-text-holder"> <p class="name-text">${d.full_name} </p> <p class="house-text">${d.house_name}</p> <div class="country-text-holder"> <span class="country-text">${d.country}</span> <span><img src="https://www.countryflags.io/${countryCodes[d.country]}/flat/16.png" alt="" /></span> </div> </div> </div>`;
         });
-
-        console.log("String data has been populated");
-        console.log(stringData);
       }
 
       function renderElements() {
@@ -265,8 +315,6 @@
 
       function formatKeys() {
         var dataString = JSON.stringify(jsonData);
-        console.log(typeof dataString);
-
         dataString = dataString.replace(/Full Name/g, "full_name");
         dataString = dataString.replace(/House Name/g, "house_name");
         dataString = dataString.replace(/Current Contact Number/g, "mob");
@@ -295,6 +343,8 @@
         formatData();
         populateStringData();
         renderElements();
+        showPhotoPage();
+        renderBloodPage();
       }
 
       function loadJSON() {
