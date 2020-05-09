@@ -174,12 +174,13 @@
       }
       .blood-group-header {
         background-color: #ffb466;
+        margin-top: 5px;
       }
       .blood-group-name-tile {
         background-color: #cccccc;
+        margin-top: 5px;
       }
       .blood-tile {
-        margin-bottom: 3px;
         border-radius: 5px;
         font-family: "Barlow Condensed", sans-serif;
         padding-left: 10px;
@@ -250,12 +251,14 @@
       ];
 
       function showPhotoPage() {
+        $(".navbar-collapse").collapse("hide");
         $(".here-we-are-title").show();
         $(".here-is-our-blood").hide();
         $(".tile-holder").show();
         $(".blood-holder").hide();
       }
       function showBloodPage() {
+        $(".navbar-collapse").collapse("hide");
         $(".here-we-are-title").hide();
         $(".here-is-our-blood").show();
         $(".tile-holder").hide();
