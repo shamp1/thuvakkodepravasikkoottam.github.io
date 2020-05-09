@@ -338,7 +338,10 @@
           jsonData[i].full_name = titleCase(jsonData[i].full_name);
           jsonData[i].house_name = titleCase(jsonData[i].house_name);
           jsonData[i].country = String(jsonData[i].country).trim();
+          jsonData[i].mob = "#####";
+          jsonData[i].dob = "#####";
         }
+        console.log(JSON.stringify(jsonData));
       }
 
       function dataLoaded() {
@@ -373,12 +376,26 @@
       }
 
       function testDataLoad() {
+        jsonData = [
+          ("data": {
+            Timestamp: "2020/05/02 11:52:01 AM GMT+2",
+            "Full Name": "Sarath Mohan",
+            "House Name": "Archana",
+            "Currently working country": "Oman",
+            "Current Contact Number": "+96891271371",
+            "Date of Birth": "1989-01-27",
+            "Blood group": "B +ve",
+            "Upload a close up photo": "https://drive.google.com/u/0/open?usp=forms_web&id=1QkjImD40Sl9sATzTh2yA4gn4U5vAqKAP",
+          }),
+        ];
+
         dataLoaded();
       }
 
       $(document).ready(function () {
+        showPhotoPage();
         loadJSON();
-        // testDataLoad();
+        //testDataLoad();
       });
     </script>
   </body>
