@@ -186,6 +186,22 @@
         padding-left: 10px;
         font-size: 16px;
       }
+      .footer {
+        height: 50px;
+        background-color: #cccccc;
+        display: none;
+      }
+      .footer-text {
+        padding-top: 10px;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 16px;
+        color: #000000;
+      }
+      .here-we-are-title,
+      .here-is-our-blood {
+        display: none;
+      }
     </style>
   </head>
 
@@ -222,6 +238,9 @@
     <div class="tile-holder"></div>
     <div class="blood-holder"></div>
     <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-text">© All rights reserved</div>
+    </footer>
     <!-- Footer -->
 
     <script>
@@ -397,6 +416,7 @@
       $(document).ready(function () {
         showPhotoPage();
         loadJSON();
+        $(".footer").show();
         //testDataLoad();
       });
     </script>
