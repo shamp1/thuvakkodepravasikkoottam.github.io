@@ -2,14 +2,20 @@
 <html lang="en">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-24113850-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-24113850-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-24113850-2');
-</script>
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-24113850-2");
+    </script>
 
     <title>Thuvakkode Pravasikkoottam</title>
     <meta charset="utf-8" />
@@ -33,6 +39,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
     <style>
       body {
         font: 20px Montserrat, sans-serif;
@@ -90,7 +99,9 @@
       .navbar-nav li a:hover {
         color: #1abc9c !important;
       }
-
+      .navbar-nav {
+        font-family: "Barlow Condensed", sans-serif;
+      }
       .tile {
         width: 300px;
         height: 425px;
@@ -131,6 +142,7 @@
 
       .tile-text-holder {
         padding: 14px;
+        position: relative;
       }
 
       .tile-text-holder p {
@@ -150,12 +162,13 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
-        padding-top: 20px;
+        padding-top: 40px;
       }
 
       .header-holder {
         background-color: #cccccc;
       }
+
       .heading {
         font-family: "Chewy", cursive;
 
@@ -164,6 +177,7 @@
         line-height: 25px;
         margin-left: 20px;
       }
+
       .here-we-are-title,
       .here-is-our-blood {
         color: #000000;
@@ -172,9 +186,11 @@
         margin-top: 20px;
         font-size: 24px;
       }
+
       .menu-items {
-        font-family: "Caveat", cursive;
+        font-family: "Barlow Condensed", sans-serif;
       }
+
       .blood-holder {
         color: #000000;
 
@@ -182,25 +198,40 @@
         margin: 0 auto;
         padding-top: 20px;
       }
+
       .blood-group-header {
         background-color: #ffb466;
         margin-top: 5px;
       }
+
       .blood-group-name-tile {
         background-color: #cccccc;
         margin-top: 5px;
       }
+
       .blood-tile {
         border-radius: 5px;
         font-family: "Barlow Condensed", sans-serif;
         padding-left: 10px;
         font-size: 16px;
       }
+
       .footer {
         height: 50px;
         background-color: #cccccc;
         display: none;
       }
+
+      .sl-number {
+        background-color: #bbb8b8;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 2px;
+        position: absolute;
+        right: 14px;
+        bottom: 13px;
+      }
+
       .footer-text {
         padding-top: 10px;
         text-align: center;
@@ -208,9 +239,15 @@
         font-size: 16px;
         color: #000000;
       }
+
       .here-we-are-title,
       .here-is-our-blood {
         display: none;
+      }
+
+      #chartdiv {
+        width: 100%;
+        height: 600px;
       }
     </style>
   </head>
@@ -236,17 +273,19 @@
           <ul class="nav navbar-nav navbar-right menu-items">
             <li><a href="#" onclick="showPhotoPage()">WE</a></li>
             <li><a href="#" onclick="showBloodPage()">OUR BLOOD</a></li>
+            <li><a href="#" onclick="showPresencePage()">OUR PRESENCE</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
     <!-- First Container -->
-    <div class="here-we-are-title">here we are...</div>
-    <div class="here-is-our-blood">here is our blood...</div>
+    <!--<div class="here-we-are-title">here we are...</div>
+    <div class="here-is-our-blood">here is our blood...</div>--->
 
     <div class="tile-holder"></div>
     <div class="blood-holder"></div>
+    <div class="presence-holder"><div id="chartdiv"></div></div>
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-text">© All rights reserved</div>
@@ -258,14 +297,18 @@
       var stringData = "";
       var countryCodes = {
         Bahrain: "bh",
+        India: "in",
+        Kuwait: "kw",
+        Norway: "no",
         Oman: "om",
         Qatar: "qa",
-        "United Arab Emirates": "ae",
-        Sweden: "se",
-        "United Kingdom": "gb",
         "Saudi Arabia": "sa",
-        Kuwait: "kw",
-        India: "in",
+        Sweden: "se",
+        "United Arab Emirates": "ae",
+
+        "United Kingdom": "gb",
+
+        USA: "us",
       };
 
       var bloodMaster = [
@@ -281,18 +324,31 @@
 
       function showPhotoPage() {
         $(".navbar-collapse").collapse("hide");
-        $(".here-we-are-title").show();
-        $(".here-is-our-blood").hide();
+        // $(".here-we-are-title").show();
+        // $(".here-is-our-blood").hide();
         $(".tile-holder").show();
         $(".blood-holder").hide();
+        $(".presence-holder").hide();
       }
+
       function showBloodPage() {
         $(".navbar-collapse").collapse("hide");
-        $(".here-we-are-title").hide();
-        $(".here-is-our-blood").show();
+        // $(".here-we-are-title").hide();
+        // $(".here-is-our-blood").show();
         $(".tile-holder").hide();
         $(".blood-holder").show();
+        $(".presence-holder").hide();
       }
+
+      function showPresencePage() {
+        $(".navbar-collapse").collapse("hide");
+        // $(".here-we-are-title").hide();
+        // $(".here-is-our-blood").show();
+        $(".tile-holder").hide();
+        $(".blood-holder").hide();
+        $(".presence-holder").show();
+      }
+
       function renderBloodPage() {
         var bloofiltered = "";
 
@@ -310,11 +366,12 @@
           }
         }
       }
+
       function populateStringData() {
-        stringData = jsonData.map(function (d) {
+        stringData = jsonData.map(function (d, idx) {
           return `<div class="tile"> <div class="photo-holder"> <img src="https://drive.google.com/uc?${getIdFromGDriveURL(
             d.photo
-          )}" /> </div> <div class="tile-text-holder"> <p class="name-text">${d.full_name} </p> <p class="house-text">${d.house_name}</p> <div class="country-text-holder"> <span class="country-text">${d.country}</span> <span><img src="https://www.countryflags.io/${countryCodes[d.country]}/flat/16.png" alt="" /></span> </div> </div> </div>`;
+          )}" /> </div> <div class="tile-text-holder"> <p class="name-text">${d.full_name} </p> <p class="house-text">${d.house_name}</p> <div class="country-text-holder"> <span class="country-text">${d.country}</span> <span class="sl-number">${++idx}</span><span><img src="https://www.countryflags.io/${countryCodes[d.country]}/flat/16.png" alt="" /></span> </div> </div> </div>`;
         });
       }
 
@@ -372,13 +429,65 @@
         //console.log(JSON.stringify(jsonData));
       }
 
+      function shuffle(arr) {
+        arr.sort(() => Math.random() - 0.5);
+        return arr;
+      }
+
+      function renderChart() {
+        am4core.useTheme(am4themes_animated);
+
+        // Themes end
+
+        //var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+        var chart = am4core.create("chartdiv", am4charts.PieChart);
+        chart.data = getChartData();
+        var pieSeries = chart.series.push(new am4charts.PieSeries());
+        pieSeries.dataFields.value = "count";
+        pieSeries.dataFields.category = "country";
+        pieSeries.innerRadius = am4core.percent(50);
+        pieSeries.ticks.template.disabled = true;
+        pieSeries.labels.template.disabled = true;
+
+        var rgm = new am4core.RadialGradientModifier();
+        rgm.brightnesses.push(-0.8, -0.8, -0.5, 0, -0.5);
+        pieSeries.slices.template.fillModifier = rgm;
+        pieSeries.slices.template.strokeModifier = rgm;
+        pieSeries.slices.template.strokeOpacity = 0.4;
+        pieSeries.slices.template.strokeWidth = 0;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.position = "bottom";
+        chart.legend.maxWidth = undefined;
+      }
+
+      function getChartData() {
+        console.log("inside render presence chart function");
+        console.log(countryCodes);
+        var chartData = [];
+        var temp;
+        for (key in countryCodes) {
+          temp = new Object();
+          temp.country = key;
+          temp.count = jsonData.filter(function (d) {
+            return d.country == key;
+          }).length;
+          if (temp.count > 0) {
+            chartData.push(temp);
+          }
+        }
+        return chartData;
+      }
+
       function dataLoaded() {
         formatKeys();
         formatData();
+        jsonData = shuffle(jsonData);
         populateStringData();
         renderElements();
         showPhotoPage();
         renderBloodPage();
+        renderChart();
       }
 
       function loadJSON() {
@@ -388,8 +497,8 @@
           dataType: "text",
           success: function (data) {
             jsonData = JSON.parse(data).data;
-           // console.log(jsonData);
-           // console.log(typeof jsonData);
+            // console.log(jsonData);
+            // console.log(typeof jsonData);
             dataLoaded();
           },
           error: function (jqXHR, exception) {
