@@ -332,6 +332,9 @@
       }
 
       function showBloodPage() {
+        var dimensionValue = "visited_blood_page";
+        ga("set", "dimension1", dimensionValue);
+
         $(".navbar-collapse").collapse("hide");
         // $(".here-we-are-title").hide();
         // $(".here-is-our-blood").show();
@@ -341,6 +344,9 @@
       }
 
       function showPresencePage() {
+        var dimensionValue = "visited_presence_page";
+        ga("set", "dimension2", dimensionValue);
+
         $(".navbar-collapse").collapse("hide");
         // $(".here-we-are-title").hide();
         // $(".here-is-our-blood").show();
