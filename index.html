@@ -377,7 +377,7 @@
 
       function populateStringData() {
         stringData = jsonData.map(function (d, idx) {
-          return `<div class="tile"> <div class="photo-holder"> <img src="https://drive.usercontent.google.com/download?id=${getIdFromGDriveURL(
+          return `<div class="tile"> <div class="photo-holder"> <img src="https://drive.usercontent.google.com/download?${getIdFromGDriveURL(
             d.photo
           )}" /> </div> <div class="tile-text-holder"> <p class="name-text">${d.full_name} </p> <p class="house-text">${d.house_name}</p> <div class="country-text-holder"> <span class="country-text">${d.country}</span><span><img src="https://flagcdn.com/w20/${countryCodes[d.country]}.png" alt="" /></span><span class="sl-number">${++idx}</span><span></span> </div> </div> </div>`;
         });
