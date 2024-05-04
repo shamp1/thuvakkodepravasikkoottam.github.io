@@ -517,7 +517,7 @@
       }
 
       function getIdFromGDriveURL(p) {
-        return p.substring(p.indexOf("id="));
+        return p.substring(p.indexOf("id=")+3);
       }
 
       function testDataLoad() {
