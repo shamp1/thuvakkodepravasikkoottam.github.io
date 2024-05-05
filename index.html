@@ -377,7 +377,8 @@
 
       function populateStringData() {
         stringData = jsonData.map(function (d, idx) {
-          return `<div class="tile"> <div class="photo-holder"> <img src="public/images/1001.jpg" /> </div> <div class="tile-text-holder"> <p class="name-text">${d.full_name} </p> <p class="house-text">${d.house_name}</p> <div class="country-text-holder"> <span class="country-text">${d.country}</span><span><img src="https://flagcdn.com/w20/${countryCodes[d.country]}.png" alt="" /></span><span class="sl-number">${++idx}</span><span></span> </div> </div> </div>`;
+          console.log(d)
+          return `<div class="tile"> <div class="photo-holder"> <img src="/public/images/${d.id}.jpg" /> </div> <div class="tile-text-holder"> <p class="name-text">${d.full_name} </p> <p class="house-text">${d.house_name}</p> <div class="country-text-holder"> <span class="country-text">${d.country}</span><span><img src="https://flagcdn.com/w20/${countryCodes[d.country]}.png" alt="" /></span><span class="sl-number">${++idx}</span><span></span> </div> </div> </div>`;
         });
       }
 
@@ -413,7 +414,6 @@
         dataString = dataString.replace(/House Name/g, "house_name");
         dataString = dataString.replace(/Current Contact Number/g, "mob");
         dataString = dataString.replace(/Date of Birth/g, "dob");
-        dataString = dataString.replace(/Upload a close up photo/g, "photo");
         dataString = dataString.replace(/Blood group/g, "blood");
         dataString = dataString.replace(
           /Currently working country/g,
@@ -523,14 +523,13 @@
           data: [
             {
               Timestamp: "2020/05/02 11:52:01 AM GMT+2",
-              "Full Name": "Sarath Mohan",
-              "House Name": "Archana",
+              "Full Name": "XXXXX XXXXX",
+              "House Name": "XXXXXX",
               "Currently working country": "Oman",
-              "Current Contact Number": "+96891271371",
-              "Date of Birth": "1989-01-27",
+              "Current Contact Number": "######",
+              "Date of Birth": "#######",
               "Blood group": "B +ve",
-              "Upload a close up photo":
-                "https://drive.google.com/u/0/open?usp=forms_web&id=1QkjImD40Sl9sATzTh2yA4gn4U5vAqKAP",
+              "id":"TPR180"
             },
           ],
         };
